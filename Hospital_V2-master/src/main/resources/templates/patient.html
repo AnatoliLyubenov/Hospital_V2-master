@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/patients}" method="get">
+    <label for="sort">Sort by:</label>
+    <select name="sort" id="sort">
+        <option value="firstName,asc" th:selected="${sort == 'firstName,asc'}">First Name (Ascending)</option>
+        <option value="firstName,desc" th:selected="${sort == 'firstName,desc'}">First Name (Descending)</option>
+        <option value="id,asc" th:selected="${sort == 'id,asc'}">ID (Ascending)</option>
+        <option value="id,desc" th:selected="${sort == 'id,desc'}">ID (Descending)</option>
+    </select>
+    <button type="submit">Sort</button>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="patient : ${patients}">
+        <td th:text="${patient.id}"></td>
+        <td th:text="${patient.firstName}"></td>
+        <td th:text="${patient.lastName}"></td>
+        <td th:text="${patient.age}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
